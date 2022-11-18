@@ -1,6 +1,16 @@
 repos:
 - repo: local
   hooks:
+    - id: black
+      name: black
+      entry: black
+      language: python
+      require_serial: true
+      types_or: [python, pyi]
+      args: ["name"]
+      
+- repo: local
+  hooks:
     - id: pylint
       name: pylint
       entry: pylint
@@ -8,7 +18,7 @@ repos:
       types: [python]
       args:
         [
-          "name",
+          "name", # package  to pylint check example is name
           "-rn", # Only display messages
           "-sn", # Don't display the score
           "--rcfile=pylintrc", # Link to your config file
